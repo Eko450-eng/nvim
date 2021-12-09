@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "coc.nvim": "^0.0.80",
+    "javascript": "^1.0.0",
+    "js": "^0.1.0",
+    "typescript": "^4.5.2"
+  }
+}
