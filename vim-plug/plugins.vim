@@ -7,9 +7,15 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
-    " Adding magit to Neovim
-    Plug 'TimUntersberger/neogit'
+    " Adding a magit clone to Neovim
     Plug 'nvim-lua/plenary.nvim'
+    Plug 'jreybert/vimagit'
+    Plug 'sindrets/diffview.nvim'
+    Plug 'kyazdani42/nvim-web-devicons'
+
+    " Plug 'cappyzawa/trim.nvim'
+    " Plug 'Odie/gitabra'
+    " Plug 'kdheepak/lazygit.nvim'
 
     " Theme
     Plug 'shaunsingh/nord.nvim'
