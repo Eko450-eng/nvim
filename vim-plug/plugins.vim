@@ -7,15 +7,30 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
+    " Adding magit to Neovim
+    Plug 'TimUntersberger/neogit'
+    Plug 'nvim-lua/plenary.nvim'
+
+    " Theme
+    Plug 'shaunsingh/nord.nvim'
+
+    " Enable surround mod
+    Plug 'ur4ltz/surround.nvim'
+
+    " Language support for TS 
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'thomas-glaessle/vim-blockcomment'
-    Plug 'flw-cn/vim-nerdtree-l-open-h-close'
-    " Keeping up to date with master
-    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-    " Better Syntax Support
-    Plug 'sheerun/vim-polyglot'
+
     " File Explorer
     Plug 'scrooloose/NERDTree'
+
+    " Blockcomments
+    Plug 'thomas-glaessle/vim-blockcomment'
+    Plug 'flw-cn/vim-nerdtree-l-open-h-close'
+
+    " Better Syntax Support
+    Plug 'sheerun/vim-polyglot'
+
     " Auto pairs for '(' '[' '{'
     Plug 'jiangmiao/auto-pairs'
 
