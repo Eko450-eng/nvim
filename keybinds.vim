@@ -30,7 +30,7 @@ nnoremap <C-w>l <C-w>s
 
 " Move window
 nnoremap <M-h> <C-w>h
-noremap <M-j> <C-w>j
+nnoremap <M-j> <C-w>j
 nnoremap <M-k> <C-w>k
 nnoremap <M-l> <C-w>l
 
@@ -45,6 +45,6 @@ inoremap <silent><expr> <Tab>
 	\ <SID>check_back_space() ? "\<Tab>" :
 	\ kite#completion#autocomplete()
 
-nnoremap  <leader>gg :MagitOnly<cr>
+nnoremap  <leader>gg :Git<cr>
 nnoremap  <leader>gd :DiffviewOpen<cr>
 nnoremap  <leader>gD :DiffviewClose<cr>

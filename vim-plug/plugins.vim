@@ -8,17 +8,19 @@ endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
     " Adding a magit clone to Neovim
-    Plug 'nvim-lua/plenary.nvim'
     Plug 'jreybert/vimagit'
     Plug 'sindrets/diffview.nvim'
-    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'tpope/vim-fugitive'
+    Plug 'nvim-lua/plenary.nvim'
 
-    " Plug 'cappyzawa/trim.nvim'
-    " Plug 'Odie/gitabra'
-    " Plug 'kdheepak/lazygit.nvim'
+    " Org Mode
+    Plug 'nvim-orgmode/orgmode'
 
-    " Theme
+    " Themes
     Plug 'shaunsingh/nord.nvim'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'Mofiqul/dracula.nvim'
 
     " Enable surround mod
     Plug 'ur4ltz/surround.nvim'
