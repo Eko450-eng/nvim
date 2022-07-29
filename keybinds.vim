@@ -49,9 +49,11 @@ inoremap <silent><expr> <Tab>
 nnoremap  <leader>gg :Git<cr>
 nnoremap  <leader>gd :DiffviewOpen<cr>
 nnoremap  <leader>gD :DiffviewClose<cr>
+nnoremap  <leader>pu :Git push<cr>
 
 " Comment box
 nnoremap gc :CBlbox<CR>
 
 " Tabbing
+vnoremap <C-g> :Tabularize /
 
