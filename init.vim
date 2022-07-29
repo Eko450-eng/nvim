@@ -9,3 +9,4 @@ set clipboard+=unnamedplus
 set number
 set mouse=a
 set wildchar=<TAB>
+set ignorecase

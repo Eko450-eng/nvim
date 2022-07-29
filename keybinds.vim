@@ -4,10 +4,10 @@ let mapleader = "\<Space>"
 " Enabling plugins
 lua require"surround".setup{}
 
-" Rebind NERDTreeToggle
+" NerdTree
 nmap <silent> <C-E> :NERDTreeToggle<CR>
-" Open Vertical Split
 let NERDTreeMapOpenVSplit="5" 
+nnoremap  <leader>bo :Bookmark<CR>
 
 " Source vimrc
 nnoremap <LEADER>sv :source $MYVIMRC<CR>
@@ -45,6 +45,13 @@ inoremap <silent><expr> <Tab>
 	\ <SID>check_back_space() ? "\<Tab>" :
 	\ kite#completion#autocomplete()
 
+" Git
 nnoremap  <leader>gg :Git<cr>
 nnoremap  <leader>gd :DiffviewOpen<cr>
 nnoremap  <leader>gD :DiffviewClose<cr>
+
+" Comment box
+nnoremap gc :CBlbox<CR>
+
+" Tabbing
+

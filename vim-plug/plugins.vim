@@ -16,11 +16,17 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Org Mode
     Plug 'nvim-orgmode/orgmode'
 
+    " Comments
+    Plug 'LudoPinelli/comment-box.nvim'
+    Plug 'tpope/vim-commentary'
+    Plug 'godlygeek/tabular'
+
     " Themes
     Plug 'shaunsingh/nord.nvim'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'Mofiqul/dracula.nvim'
+    Plug 'norcalli/nvim-colorizer.lua'
 
     " Enable surround mod
     Plug 'ur4ltz/surround.nvim'
