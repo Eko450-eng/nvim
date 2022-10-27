@@ -52,7 +52,7 @@ nnoremap  <leader>gD :DiffviewClose<cr>
 nnoremap  <leader>pu :Git push<cr>
 
 " Comment box
-nnoremap gc :CBlbox<CR>
+vnoremap gc :CBlbox<CR>
 
 " Tabbing
 vnoremap <C-g> :Tabularize /

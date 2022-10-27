@@ -5,8 +5,10 @@ source $HOME/.config/nvim/configs/plugins.vim
 source $HOME/.config/nvim/configs/theming.vim
 
 " Default settings
+vim.opt.termguicolors = true
 set clipboard+=unnamedplus
 set number
 set mouse=a
 set wildchar=<TAB>
 set ignorecase
+

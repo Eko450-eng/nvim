@@ -48,4 +48,31 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Auto pairs for '(' '[' '{'
     Plug 'jiangmiao/auto-pairs'
 
-call plug#end()
+    "Newly added
+    Plug 'nvim-lualine/lualine.nvim'
+    Plug 'onsails/lspkind.nvim'
+    Plug 'L3MON4D3/LuaSnip'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'jose-elias-alvarez/null-ls.nvim'
+    Plug 'MunifTanjim/prettier.nvim'
+    Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason-lspconfig.nvim'
+    Plug 'glepnir/lspsaga.nvim'
+    Plug 'nvim-tree/nvim-web-devicons'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-file-browser.nvim'
+    Plug 'windwp/nvim-autopairs'
+    Plug 'windwp/nvim-ts-autotag'
+    Plug 'norcalli/nvim-colorizer.lua'
+    Plug 'akinsho/bufferline.nvim'
+    Plug 'lewis6991/gitsigns.nvim'
+    Plug 'dinhhuy258/git.nvim'
+    Plug 'folke/zen-mode.nvim'
+    Plug 'iamcco/markdown-preview.nvim'
+
+
+    
+    call plug#end()
