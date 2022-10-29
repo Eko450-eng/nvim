@@ -22,12 +22,6 @@ nnoremap <C-w>k <C-w>r
 nnoremap <C-w>h <C-w>s
 nnoremap <C-w>l <C-w>s
 
-" Resize window
-nnoremap <C-w>j <C-w>r
-nnoremap <C-w>k <C-w>r
-nnoremap <C-w>h <C-w>s
-nnoremap <C-w>l <C-w>s
-
 " Move window
 nnoremap <M-h> <C-w>h
 nnoremap <M-j> <C-w>j
@@ -53,6 +47,7 @@ nnoremap  <leader>pu :Git push<cr>
 
 " Comment box
 vnoremap gc :CBlbox<CR>
+nnoremap <leader>gc :CBlbox<CR>
 
 " Tabbing
 vnoremap <C-g> :Tabularize /

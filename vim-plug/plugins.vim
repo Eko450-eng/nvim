@@ -73,6 +73,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'folke/zen-mode.nvim'
     Plug 'iamcco/markdown-preview.nvim'
 
+    Plug 'lambdalisue/suda.vim'
+    Plug 'xiyaowong/nvim-transparent'
 
     
     call plug#end()
