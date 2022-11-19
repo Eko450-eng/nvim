@@ -75,6 +75,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     Plug 'lambdalisue/suda.vim'
     Plug 'xiyaowong/nvim-transparent'
+    Plug 'elkowar/yuck.vim'
 
     
     call plug#end()
