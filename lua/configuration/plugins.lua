@@ -1,5 +1,4 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-User test = User;
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -30,29 +29,71 @@ mason_install = {
 
 
 require("lazy").setup({
-  -- LSP
-  {"nvim-lua/plenary.nvim"},
-{
-    "neovim/nvim-lspconfig",
-    dependencies = {
-        -- format & linting
-        {
-            "jose-elias-alvarez/null-ls.nvim",
+      -- LSP
+      {'saadparwaiz1/cmp_luasnip'},
+      { 'neovim/nvim-lspconfig'},
+      { 'hrsh7th/cmp-nvim-lsp'},
+      { 'hrsh7th/cmp-buffer'},
+      { 'hrsh7th/cmp-path'},
+      { 'hrsh7th/cmp-cmdline'},
+      { 'hrsh7th/nvim-cmp'},
+      {"hrsh7th/nvim-cmp", lazy=false},
+
+      {"williamboman/mason-lspconfig", lazy=false},
+      {"nvim-lua/plenary.nvim"},
+      {"L3MON4D3/LuaSnip", lazy=false},
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            -- format & linting
+            {
+                "jose-elias-alvarez/null-ls.nvim",
+            },
         },
     },
-},
   {
     "williamboman/mason.nvim",
     cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
     config = function(_, opts)
       require("mason").setup(opts)
+      --require("mason-lspconfig").setup()
 
-      -- custom nvchad cmd to install all mason binaries listed
-      vim.api.nvim_create_user_command("MasonInstallAll", function()
-        vim.cmd("MasonInstall " .. table.concat(mason_install, " "))
-      end, {})
+      local on_attach = function(_, _)
+          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
+          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+          vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+          vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, {})
+          vim.keymap.set("n", "<leader>gr", require("telescope.builtin").lsp_references, {})
+          vim.keymap.set("n", "<leader>K", vim.lsp.buf.hover, {})
+      end
 
-      vim.g.mason_binaries_list = opts.ensure_installed
+      local capabilties = require("cmp_nvim_lsp").default_capabilities()
+
+        require("lspconfig").lua_ls.setup {
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim" },
+              },
+              workspace = {
+                library = {
+                  [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                  [vim.fn.stdpath "config" .. "/lua"] = true,
+                },
+              },
+            },
+          }
+        }
+
+        require("lspconfig").solargraph.setup({})
+        require("lspconfig").tsserver.setup({})
+        require("lspconfig").gopls.setup({})
+
+      -- vim.api.nvim_create_user_command("MasonInstallAll", function()
+      --   vim.cmd("MasonInstall " .. table.concat(mason_install, " "))
+      -- end, {})
+
+      --vim.g.mason_binaries_list = opts.ensure_installed
     end,
   },
 
@@ -99,6 +140,8 @@ require("lazy").setup({
   { "joeveiga/ng.nvim", lazy = false },
 
   -- GeneralDev
+  -- Postman
+  {"diepm/vim-rest-console", lazy= false},
 
   -- Movement
   {
@@ -168,19 +211,16 @@ require("lazy").setup({
     end,
   },
 
+  {"nvim-telescope/telescope-project.nvim", lazy=false},
   {
     "nvim-telescope/telescope.nvim",
+    lazy=false,
     dependencies = { "nvim-treesitter/nvim-treesitter", { "nvim-telescope/telescope-fzf-native.nvim", build = "make" } },
     cmd = "Telescope",
     config = function(_, opts)
       local telescope = require "telescope"
       telescope.setup(opts)
-      require'telescope'.extensions.project.project{}
-
-      -- load extensions
-      for _, ext in ipairs(opts.extensions_list) do
-        telescope.load_extension(ext)
-      end
+      require'telescope'.load_extension('project')
     end,
   },
 

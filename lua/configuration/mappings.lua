@@ -1,3 +1,11 @@
+local X = {
+    --["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
+    --["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
+    -- Don't copy the replaced text after pasting in visual mode
+    -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
+    ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "Dont copy replaced text", opts = { silent = true } },
+}
+
 local T = {
     ["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
 
@@ -23,6 +31,13 @@ local T = {
     },
 }
 
+
+vim.keymap.set({"i", "s"}, "<C-E>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	end
+end, {silent = true})
+
 local I = {
     -- go to  beginning and end
     ["<C-b>"] = { "<ESC>^i", "Beginning of line" },
@@ -36,6 +51,7 @@ local I = {
 }
 
 local N = {
+    ["<leader>h"] = {"<cmd> bd<CR>", "Kill Buffer"},
     ["<S-Tab>"] = {"<cmd> bnext<CR>", "Next Buffer"},
     ["<Tab>"] = {"<cmd> bprev<CR>", "Previous Buffer"},
     ["<leader>gg"] = {"<cmd> LazyGit<CR>", "Open LazyGit"},
@@ -261,19 +277,6 @@ local N = {
     },
 
     -- new
-    ["<leader>h"] = {
-      function()
-        require("nvterm.terminal").new "horizontal"
-      end,
-      "New horizontal term",
-    },
-
-    ["<leader>v"] = {
-      function()
-        require("nvterm.terminal").new "vertical"
-      end,
-      "New vertical term",
-    },
 
     ["<leader>cc"] = {
       function()
@@ -400,30 +403,27 @@ local V = {
     },
 }
 
-local X = {
-    --["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
-    --["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
-    -- Don't copy the replaced text after pasting in visual mode
-    -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
-    ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "Dont copy replaced text", opts = { silent = true } },
-}
 
 
-local function createNMap(mode, key, func, d)
-    vim.keymap.set("n", key, func, {desc = d})
+local function createNMap(mode, key, func, d, opts)
+    vim.keymap.set(mode, key, func, {desc = d, opts})
 end
 
-local function runMappingN(mappings)
+local function runMapping(mode, mappings)
     for key, value in pairs(mappings) do
-        createNMap("n", key, value[1], value[2])
+        createNMap(mode, key, value[1], value[2], value[3])
     end
 end
 
-local function runMappingV(mappings)
-    for key, value in pairs(mappings) do
-        createNMap("v", key, value[1], value[2])
-    end
-end
+runMapping("n", N)
+runMapping("v", V)
+runMapping("x", X)
+runMapping("t", T)
+runMapping("i", I)
+--runMapping("s", S)
 
-runMappingN(N)
-runMappingV(V)
+local ls = require('luasnip')
+
+vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
+vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
