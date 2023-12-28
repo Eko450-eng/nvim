@@ -51,6 +51,9 @@ local I = {
 }
 
 local N = {
+    ["<leader>bk"] = {"<cmd> %bd|e#<CR>", "Kill all other Buffers"},
+    ["<leader>sf"] = {"<cmd> Telescope buffers<CR>", "Kill Buffer"},
+    ["<leader>ff"] = {"<cmd> require('telescope.actions').delete_buffer<CR>", "Kill Buffer"},
     ["<leader>h"] = {"<cmd> bd<CR>", "Kill Buffer"},
     ["<S-Tab>"] = {"<cmd> bnext<CR>", "Next Buffer"},
     ["<Tab>"] = {"<cmd> bprev<CR>", "Previous Buffer"},
@@ -73,8 +76,8 @@ local N = {
     ["<leader>h"] = {  ":bd<CR>", "Kill tab" },
     ["n"] = {  "nzzzv", "find next occurrence" },
     ["N"] = {  "Nzzzv", "find previous occurrence" },
-    ["<leader>k"] = {  ":lnext<CR>zz", "location next" },
-    ["<leader>j"] = {  ":lprev<CR>zz", "location previous" },
+    ["<leader>j"] = {  ":lnext<CR>zz", "location next" },
+    ["<leader>k"] = {  ":lprev<CR>zz", "location previous" },
     ["<M-j>"] = {  ":cn<CR>zz", "quickfix next" },
     ["<M-k>"] = {  ":cp<CR>zz", "quickfix previous" },
     ["<leader>d"] = {  '"_d', "delete into void" },
@@ -114,7 +117,7 @@ local N = {
     --["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
 
     -- new buffer
-    ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
+    -- ["<leader>b"] = { "<cmd> enew <CR>", "New buffer" },
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
 
     ["<leader>fm"] = {
@@ -195,14 +198,14 @@ local N = {
       "Floating diagnostic",
     },
 
-    ["[d"] = {
+    ["<leader>k"] = {
       function()
         vim.diagnostic.goto_prev { float = { border = "rounded" } }
       end,
       "Goto prev",
     },
 
-    ["]d"] = {
+    ["<leader>j"] = {
       function()
         vim.diagnostic.goto_next { float = { border = "rounded" } }
       end,
@@ -277,7 +280,6 @@ local N = {
     },
 
     -- new
-
     ["<leader>cc"] = {
       function()
         local ok, start = require("indent_blankline.utils").get_current_context(
