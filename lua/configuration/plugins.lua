@@ -11,8 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
-
 mason_install = {
     -- lua stuff
     "lua-language-server",
@@ -302,6 +300,38 @@ require("lazy").setup({
 
     -- QOL
     {
+        "NvChad/nvterm",
+        lazy = false,
+        config = function()
+            require("nvterm").setup({
+                terminals = {
+                    shell = vim.o.shell,
+                    list = {},
+                    type_opts = {
+                        float = {
+                            relative = 'editor',
+                            row = 0.3,
+                            col = 0.25,
+                            width = 0.5,
+                            height = 0.4,
+                            border = "single",
+                        },
+                        horizontal = { location = "rightbelow", split_ratio = .3, },
+                        vertical = { location = "rightbelow", split_ratio = .5 },
+                    }
+                },
+                behavior = {
+                    autoclose_on_quit = {
+                        enabled = false,
+                        confirm = true,
+                    },
+                    close_on_exit = true,
+                    auto_insert = true,
+                },
+            })
+        end,
+    },
+    {
         "nvim-lualine/lualine.nvim",
         lazy = false,
         opts = function()
@@ -358,7 +388,8 @@ require("lazy").setup({
     { "zivyangll/git-blame.vim",               lazy = false },
     {
         "lukas-reineke/indent-blankline.nvim",
-        version = "2.20.7",
+        main = "ibl",
+        opts={}
     },
 
     -- autopairing of (){}[] etc
@@ -400,9 +431,12 @@ require("lazy").setup({
         end,
     },
 
-
     -- Themes
     { "https://github.com/doki-theme/doki-theme-vim.git" },
-    { "catppuccin/nvim",                                 name = "catppuccin", priority = 1000 },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000
+    },
 }
 )

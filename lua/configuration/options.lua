@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 local options = {
 	nu = true,
 	rnu = true,
-	scrolloff=8,
+	scrolloff=40,
 	incsearch = true,
 	smartindent  = true,
 	wrap = true,

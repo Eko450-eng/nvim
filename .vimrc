@@ -1,16 +1,16 @@
 let mapleader=" "
 
-set relativenumber
-set rnu
-set scrolloff=8
-set incsearch
-set smartindent
-set wrap! 
-set expandtab 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set undofile
+" set relativenumber
+" set rnu
+" set scrolloff=8
+" set incsearch
+" set smartindent
+" set wrap! 
+" set expandtab 
+" set tabstop=4
+" set shiftwidth=4
+" set softtabstop=4
+" set undofile
 
 "Dart and Flutter Formatting on save
 let g:dart_format_on_save = v:true

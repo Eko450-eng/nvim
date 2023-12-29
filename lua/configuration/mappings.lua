@@ -9,25 +9,18 @@ local X = {
 local T = {
     ["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
 
-    ["<A-i>"] = {
+    ["<A-h>"] = {
       function()
         require("nvterm.terminal").toggle "float"
       end,
       "Toggle floating term",
     },
 
-    ["<A-h>"] = {
+    ["<A-v>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
       "Toggle horizontal term",
-    },
-
-    ["<A-v>"] = {
-      function()
-        require("nvterm.terminal").toggle "vertical"
-      end,
-      "Toggle vertical term",
     },
 }
 
@@ -51,20 +44,18 @@ local I = {
 }
 
 local N = {
+    ["<leader>ss"] = {"<cmd> IBLToggle<CR>", "Toggle indent blankline"},
+    ["<leader>rs"] = {"<cmd> IBLToggleScope<CR>", "Toggle indent blankline"},
     ["<leader>bk"] = {"<cmd> %bd|e#<CR>", "Kill all other Buffers"},
     ["<leader>sf"] = {"<cmd> Telescope buffers<CR>", "Kill Buffer"},
-    ["<leader>ff"] = {"<cmd> require('telescope.actions').delete_buffer<CR>", "Kill Buffer"},
-    ["<leader>h"] = {"<cmd> bd<CR>", "Kill Buffer"},
+    -- ["<leader>ff"] = {"<cmd> require('telescope.actions').delete_buffer<CR>", "Kill Buffer"},
+    -- ["<leader>h"] = {"<cmd> bd<CR>", "Kill Buffer"},
     ["<S-Tab>"] = {"<cmd> bnext<CR>", "Next Buffer"},
     ["<Tab>"] = {"<cmd> bprev<CR>", "Previous Buffer"},
     ["<leader>gg"] = {"<cmd> LazyGit<CR>", "Open LazyGit"},
     ["<leader>E"] = {"<cmd> NvimTreeToggle<CR>", "Open Tree View"},
     ["<leader>x"] = { "", ""},
-    ["<leader>B"] = { "", ""},
     ["<leader>v"] = { "", ""},
-    ["<leader>h"] = { "", ""},
-    ["<leader>n"] = { "", ""},
-    ["<leader>rn"] = { "", ""},
     ["<leader>df"] = {  "<cmd> DBUIFindBuffer<CR>", "Find in Database" },
     ["<leader>dr"] = {  "<cmd> DBUIRenameBuffer<CR>", "Rename DB" },
     ["<leader>dl"] = {  "<cmd> DBUILastQueryInfo<CR>", "Last query ingo" },
@@ -258,25 +249,18 @@ local N = {
 
     ["<leader>ma"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
 
-    ["<A-i>"] = {
+    ["<A-h>"] = {
       function()
         require("nvterm.terminal").toggle "float"
       end,
       "Toggle floating term",
     },
 
-    ["<A-h>"] = {
+    ["<A-v>"] = {
       function()
         require("nvterm.terminal").toggle "horizontal"
       end,
       "Toggle horizontal term",
-    },
-
-    ["<A-v>"] = {
-      function()
-        require("nvterm.terminal").toggle "vertical"
-      end,
-      "Toggle vertical term",
     },
 
     -- new
