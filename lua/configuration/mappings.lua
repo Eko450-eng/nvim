@@ -44,9 +44,12 @@ local I = {
 }
 
 local N = {
+    ["<leader>t"] = {"<cmd> RustLsp codeAction<CR>", "Rust Codeactions"},
+    ["<leader>lt"] = {"<cmd> RustLsp debuggables last<CR>", "Rust debugger"},
+    ["<leader>ll"] = {"<cmd> RustLsp runnables last<CR>", "Rust runner"},
     ["<leader>ss"] = {"<cmd> IBLToggle<CR>", "Toggle indent blankline"},
     ["<leader>rs"] = {"<cmd> IBLToggleScope<CR>", "Toggle indent blankline"},
-    ["<leader>bk"] = {"<cmd> %bd|e#<CR>", "Kill all other Buffers"},
+    ["<leader>bk"] = {"<cmd> RustLsp codeAction<CR>", "Open Codeactions for Rust"},
     ["<leader>sf"] = {"<cmd> Telescope buffers<CR>", "Kill Buffer"},
     -- ["<leader>ff"] = {"<cmd> require('telescope.actions').delete_buffer<CR>", "Kill Buffer"},
     -- ["<leader>h"] = {"<cmd> bd<CR>", "Kill Buffer"},
@@ -79,7 +82,6 @@ local N = {
     ["<leader>fr"] = { "<cmd> :FlutterReload <CR>", "Flutter Reload"},
     ["<leader>fR"] = { "<cmd> :FlutterRestart <CR>", "Flutter Restart"},
     ["<leader>p"] = { "<cmd> :LspRestart <CR>", "Restart LSP"},
-    ["<leader>l"] = { "<cmd> :MasonInstall <CR>", "Open Mason"},
 
     ["<Esc>"] = { "<cmd> noh <CR>", "Clear highlights" },
     -- switch between windows

@@ -27,6 +27,17 @@ mason_install = {
 }
 
 require("lazy").setup({
+    -- rust
+    {
+      'mrcjkb/rustaceanvim',
+      version = '^3',
+      ft = { 'rust' },
+    },
+    {"mfussenegger/nvim-dap"},
+    {"rcarriga/nvim-dap-ui"},
+
+
+    
     -- AI
     { "David-Kunz/gen.nvim" },
     { "MunifTanjim/nui.nvim", lazy = false },
@@ -432,6 +443,23 @@ require("lazy").setup({
     },
 
     -- Themes
+    { "xiyaowong/transparent.nvim", 
+    lazy=false, 
+    config=function()
+
+require("transparent").setup({ -- Optional, you don't have to run setup.
+  groups = { -- table: default groups
+    'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+    'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+    'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+    'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+    'EndOfBuffer',
+  },
+  extra_groups = {}, -- table: additional groups that should be cleared
+  exclude_groups = {}, -- table: groups you don't want to clear
+})
+    end
+    },
     { "https://github.com/doki-theme/doki-theme-vim.git" },
     {
         "catppuccin/nvim",
