@@ -8,6 +8,9 @@ local function bind(opt, outer_opt)
     end
 end
 
+require('configuration.lazy')
+--require('configuration.options')
+require('configuration.mappings')
+require('configuration.lspconfig')
 
-require('configuration')
-
+vim.cmd([[colorscheme catppuccin]])

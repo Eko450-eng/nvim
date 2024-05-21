@@ -16,6 +16,7 @@ M.general = {
   },
 
   n = {
+    ["<leader>/"] = {"<cmd> CBccbox<CR>", "Comment Box"},
     ["<Esc>"] = { "<cmd> noh <CR>", "Clear highlights" },
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window left" },
@@ -99,27 +100,6 @@ M.tabufline = {
         require("nvchad.tabufline").close_buffer()
       end,
       "Close buffer",
-    },
-  },
-}
-
-M.comment = {
-  plugin = true,
-
-  -- toggle comment in both modes
-  n = {
-    ["<leader>/"] = {
-      function()
-        require("Comment.api").toggle.linewise.current()
-      end,
-      "Toggle comment",
-    },
-  },
-
-  v = {
-    ["<leader>/"] = {
-      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-      "Toggle comment",
     },
   },
 }

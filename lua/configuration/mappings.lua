@@ -44,6 +44,13 @@ local I = {
 }
 
 local N = {
+    ["<leader>dr"] = {
+        function()
+            require("dapui").toggle()
+        end,
+        "evaluate selection",
+    },
+    ["<leader>/"] = {"<cmd> CBccbox<CR>", "Codeactions"},
     ["<leader>t"] = {"<cmd> RustLsp codeAction<CR>", "Rust Codeactions"},
     ["<leader>lt"] = {"<cmd> RustLsp debuggables last<CR>", "Rust debugger"},
     ["<leader>ll"] = {"<cmd> RustLsp runnables last<CR>", "Rust runner"},
@@ -60,7 +67,7 @@ local N = {
     ["<leader>x"] = { "", ""},
     ["<leader>v"] = { "", ""},
     ["<leader>df"] = {  "<cmd> DBUIFindBuffer<CR>", "Find in Database" },
-    ["<leader>dr"] = {  "<cmd> DBUIRenameBuffer<CR>", "Rename DB" },
+    ["<leader>dR"] = {  "<cmd> DBUIRenameBuffer<CR>", "Rename DB" },
     ["<leader>dl"] = {  "<cmd> DBUILastQueryInfo<CR>", "Last query ingo" },
     ["<C-p>"] = {  "<cmd> Telescope git_files <CR>", "find git files" },
     ["<leader>P"] = {  "<cmd> Telescope project <CR>", "Projects view" },
@@ -121,13 +128,6 @@ local N = {
     },
 
     -- close buffer + hide terminal buffer
-    ["<leader>/"] = {
-      function()
-        require("Comment.api").toggle.linewise.current()
-      end,
-      "Toggle comment",
-    },
-
     ["gD"] = {
       function()
         vim.lsp.buf.declaration()
@@ -357,12 +357,6 @@ local N = {
 
 
 local V = {
-    ["<C-k>"] = {
-        function()
-            require("dapui").eval()
-        end,
-        "evaluate selection",
-    },
     ["K"] = { ":m'<-2<CR>gv=gv", "move selection up" },
     ["J"] = { ":m'>+1<CR>gv=gv", "move selection down" },
     ["("] = { "c()<C-c>P", "surround with '()'" },
@@ -377,11 +371,6 @@ local V = {
     --["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["<"] = { "<gv", "Indent line" },
     [">"] = { ">gv", "Indent line" },
-
-    ["<leader>/"] = {
-      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-      "Toggle comment",
-    },
 
     ["<leader>ca"] = {
       function()
@@ -410,7 +399,7 @@ runMapping("t", T)
 runMapping("i", I)
 --runMapping("s", S)
 
-local ls = require('luasnip')
+-- local ls = require('luasnip')
 
 vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
 vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
