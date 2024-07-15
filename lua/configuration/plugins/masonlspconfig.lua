@@ -11,6 +11,15 @@ return {
         -- local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
         local vue_language_server_path = "/home/eko/node_modules/.pnpm/.pnpm/5/node_modules/@vue/typescript-plugin"
 
+        lspconfig.slint_lsp.setup {
+            filetypes = { 'slint' },
+        }
+
+
+        lspconfig.pyright.setup {
+            filetypes = { 'python' }
+        }
+
         lspconfig.tsserver.setup {
             init_options = {
                 plugins = {
@@ -24,15 +33,15 @@ return {
             filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
         }
 
-        lspconfig.rust_analyzer.setup({
-            filetypes = { "rust" },
-            root_dir = require("lspconfig/util").root_pattern("Cargo.toml"),
-            settings = {
-                cargo = {
-                    allFeatures = true,
-                },
-            },
-        })
+        -- lspconfig.rust_analyzer.setup({
+        --     filetypes = { "rust" },
+        --     root_dir = require("lspconfig/util").root_pattern("Cargo.toml"),
+        --     settings = {
+        --         cargo = {
+        --             allFeatures = true,
+        --         },
+        --     },
+        -- })
 
 
         lspconfig.volar.setup({})

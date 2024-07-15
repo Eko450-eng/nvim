@@ -9,7 +9,7 @@ local function bind(opt, outer_opt)
 end
 
 require('configuration.lazy')
---require('configuration.options')
+require('configuration.options')
 require('configuration.mappings')
 require('configuration.lspconfig')
 

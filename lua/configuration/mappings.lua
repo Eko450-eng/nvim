@@ -9,27 +9,30 @@ local X = {
 local T = {
     ["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
 
+    ["<A-j>"] = { "<cmd> ChatGPT<CR>", "Toggle ChatGPT" },
+    ["<A-k>"] = { "<cmd> ChatGPTCompleteCode<CR>", "ChatGPT CompleteCode" },
+
     ["<A-h>"] = {
-      function()
-        require("nvterm.terminal").toggle "float"
-      end,
-      "Toggle floating term",
+        function()
+            require("nvterm.terminal").toggle "float"
+        end,
+        "Toggle floating term",
     },
 
     ["<A-v>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "Toggle horizontal term",
+        function()
+            require("nvterm.terminal").toggle "horizontal"
+        end,
+        "Toggle horizontal term",
     },
 }
 
 
-vim.keymap.set({"i", "s"}, "<C-E>", function()
-	if ls.choice_active() then
-		ls.change_choice(1)
-	end
-end, {silent = true})
+-- vim.keymap.set({ "i", "s" }, "<C-E>", function()
+--     if ls.choice_active() then
+--         ls.change_choice(1)
+--     end
+-- end, { silent = true })
 
 local I = {
     -- go to  beginning and end
@@ -50,45 +53,47 @@ local N = {
         end,
         "evaluate selection",
     },
-    ["<leader>/"] = {"<cmd> CBccbox<CR>", "Codeactions"},
-    ["<leader>t"] = {"<cmd> RustLsp codeAction<CR>", "Rust Codeactions"},
-    ["<leader>lt"] = {"<cmd> RustLsp debuggables last<CR>", "Rust debugger"},
-    ["<leader>ll"] = {"<cmd> RustLsp runnables last<CR>", "Rust runner"},
-    ["<leader>ss"] = {"<cmd> IBLToggle<CR>", "Toggle indent blankline"},
-    ["<leader>rs"] = {"<cmd> IBLToggleScope<CR>", "Toggle indent blankline"},
-    ["<leader>bk"] = {"<cmd> RustLsp codeAction<CR>", "Open Codeactions for Rust"},
-    ["<leader>sf"] = {"<cmd> Telescope buffers<CR>", "Kill Buffer"},
+    ["<leader>db"] = { "<cmd> DapToggleBreakpoint<CR>", "Toggle Breakpoint" },
+    ["<leader>e"] = { "<cmd> Oil<CR>", "Open Oil" },
+    ["<leader>/"] = { "<cmd> CBccbox<CR>", "Codeactions" },
+    ["<leader>t"] = { "<cmd> RustLsp codeAction<CR>", "Rust Codeactions" },
+    ["<leader>lt"] = { "<cmd> RustLsp debuggables last<CR>", "Rust debugger" },
+    ["<leader>ll"] = { "<cmd> RustLsp runnables last<CR>", "Rust runner" },
+    ["<leader>ss"] = { "<cmd> IBLToggle<CR>", "Toggle indent blankline" },
+    ["<leader>rs"] = { "<cmd> IBLToggleScope<CR>", "Toggle indent blankline" },
+    ["<leader>bk"] = { "<cmd> RustLsp codeAction<CR>", "Open Codeactions for Rust" },
+    ["<leader>sf"] = { "<cmd> Telescope buffers<CR>", "Kill Buffer" },
     -- ["<leader>ff"] = {"<cmd> require('telescope.actions').delete_buffer<CR>", "Kill Buffer"},
     -- ["<leader>h"] = {"<cmd> bd<CR>", "Kill Buffer"},
-    ["<S-Tab>"] = {"<cmd> bnext<CR>", "Next Buffer"},
-    ["<Tab>"] = {"<cmd> bprev<CR>", "Previous Buffer"},
-    ["<leader>gg"] = {"<cmd> LazyGit<CR>", "Open LazyGit"},
-    ["<leader>E"] = {"<cmd> NvimTreeToggle<CR>", "Open Tree View"},
-    ["<leader>x"] = { "", ""},
-    ["<leader>v"] = { "", ""},
-    ["<leader>df"] = {  "<cmd> DBUIFindBuffer<CR>", "Find in Database" },
-    ["<leader>dR"] = {  "<cmd> DBUIRenameBuffer<CR>", "Rename DB" },
-    ["<leader>dl"] = {  "<cmd> DBUILastQueryInfo<CR>", "Last query ingo" },
-    ["<C-p>"] = {  "<cmd> Telescope git_files <CR>", "find git files" },
-    ["<leader>P"] = {  "<cmd> Telescope project <CR>", "Projects view" },
-    ["<leader>B"] = {  "<cmd> Telescope live_grep <CR>", "live grep" },
-    ["<leader>e"] = {  "<cmd> NvimTreeToggle <CR>", "Open NvimTree" },
-    ["<leader>db"] = {  ":GoTagAdd json<CR>", "Kill tab" },
-    ["<leader>h"] = {  ":bd<CR>", "Kill tab" },
-    ["n"] = {  "nzzzv", "find next occurrence" },
-    ["N"] = {  "Nzzzv", "find previous occurrence" },
-    ["<leader>j"] = {  ":lnext<CR>zz", "location next" },
-    ["<leader>k"] = {  ":lprev<CR>zz", "location previous" },
-    ["<M-j>"] = {  ":cn<CR>zz", "quickfix next" },
-    ["<M-k>"] = {  ":cp<CR>zz", "quickfix previous" },
-    ["<leader>d"] = {  '"_d', "delete into void" },
-    ["<leader>fs"] = { "<cmd> :w <CR>", "Save file"},
-    ["<leader>lF"] = { "<cmd> :DartFmt <CR>", "Save file"},
-    ["<leader>fq"] = { "<cmd> :FlutterQuit <CR>", "Flutter Quit"},
-    ["<leader>fl"] = { "<cmd> :FlutterRun <CR>", "Flutter Run"},
-    ["<leader>fr"] = { "<cmd> :FlutterReload <CR>", "Flutter Reload"},
-    ["<leader>fR"] = { "<cmd> :FlutterRestart <CR>", "Flutter Restart"},
-    ["<leader>p"] = { "<cmd> :LspRestart <CR>", "Restart LSP"},
+    ["<S-Tab>"] = { "<cmd> bnext<CR>", "Next Buffer" },
+    ["<Tab>"] = { "<cmd> bprev<CR>", "Previous Buffer" },
+    ["<leader>gg"] = { "<cmd> LazyGit<CR>", "Open LazyGit" },
+    ["<leader>x"] = { "", "" },
+    ["<leader>v"] = { "", "" },
+    ["<leader>df"] = { "<cmd> DBUIFindBuffer<CR>", "Find in Database" },
+    ["<leader>dR"] = { "<cmd> DBUIRenameBuffer<CR>", "Rename DB" },
+    ["<leader>dl"] = { "<cmd> DBUILastQueryInfo<CR>", "Last query ingo" },
+    ["<C-p>"] = { "<cmd> Telescope git_files <CR>", "find git files" },
+    ["<leader>P"] = { "<cmd> Telescope project <CR>", "Projects view" },
+    ["<leader>B"] = { "<cmd> Telescope live_grep <CR>", "live grep" },
+    ["<leader>E"] = { "<cmd> NvimTreeToggle <CR>", "Open NvimTree" },
+    ["<leader>h"] = { ":bd<CR>", "Kill tab" },
+    ["n"] = { "nzzzv", "find next occurrence" },
+    ["N"] = { "Nzzzv", "find previous occurrence" },
+    ["<leader>j"] = { ":lnext<CR>zz", "location next" },
+    ["<leader>k"] = { ":lprev<CR>zz", "location previous" },
+    -- ["<M-j>"] = { ":cn<CR>zz", "quickfix next" },
+    -- ["<M-k>"] = { ":cp<CR>zz", "quickfix previous" },
+    ["<M-j>"] = { "<cmd> ChatGPT<CR>", "Toggle ChatGPT" },
+    ["<M-k>"] = { "<cmd> ChatGPTCompleteCode<CR>", "ChatGPT CompleteCode" },
+    ["<leader>d"] = { '"_d', "delete into void" },
+    ["<leader>fs"] = { "<cmd> :w <CR>", "Save file" },
+    ["<leader>lF"] = { "<cmd> :DartFmt <CR>", "Save file" },
+    ["<leader>fq"] = { "<cmd> :FlutterQuit <CR>", "Flutter Quit" },
+    ["<leader>fl"] = { "<cmd> :FlutterRun <CR>", "Flutter Run" },
+    ["<leader>fr"] = { "<cmd> :FlutterReload <CR>", "Flutter Reload" },
+    ["<leader>fR"] = { "<cmd> :FlutterRestart <CR>", "Flutter Restart" },
+    ["<leader>p"] = { "<cmd> :LspRestart <CR>", "Restart LSP" },
 
     ["<Esc>"] = { "<cmd> noh <CR>", "Clear highlights" },
     -- switch between windows
@@ -105,7 +110,7 @@ local N = {
 
     -- line numbers
     ["<leader>n"] = { "<cmd> set nu! <CR>", "Toggle line number" },
-    ["<leader>rn"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
+    -- ["<leader>rn"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
     -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -121,116 +126,103 @@ local N = {
     ["<leader>ch"] = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
 
     ["<leader>fm"] = {
-      function()
-        vim.lsp.buf.format { async = true }
-      end,
-      "LSP formatting",
+        function()
+            vim.lsp.buf.format { async = true }
+        end,
+        "LSP formatting",
     },
 
     -- close buffer + hide terminal buffer
     ["gD"] = {
-      function()
-        vim.lsp.buf.declaration()
-      end,
-      "LSP declaration",
+        function()
+            vim.lsp.buf.declaration()
+        end,
+        "LSP declaration",
     },
 
     ["gd"] = {
-      function()
-        vim.lsp.buf.definition()
-      end,
-      "LSP definition",
+        function()
+            vim.lsp.buf.definition()
+        end,
+        "LSP definition",
     },
 
     ["K"] = {
-      function()
-        vim.lsp.buf.hover()
-      end,
-      "LSP hover",
+        function()
+            vim.lsp.buf.hover()
+        end,
+        "LSP hover",
     },
 
     ["gi"] = {
-      function()
-        vim.lsp.buf.implementation()
-      end,
-      "LSP implementation",
+        function()
+            vim.lsp.buf.implementation()
+        end,
+        "LSP implementation",
     },
 
     ["<leader>ls"] = {
-      function()
-        vim.lsp.buf.signature_help()
-      end,
-      "LSP signature help",
+        function()
+            vim.lsp.buf.signature_help()
+        end,
+        "LSP signature help",
     },
 
     ["<leader>D"] = {
-      function()
-        vim.lsp.buf.type_definition()
-      end,
-      "LSP definition type",
+        function()
+            vim.lsp.buf.type_definition()
+        end,
+        "LSP definition type",
     },
 
     ["<leader>ca"] = {
-      function()
-        vim.lsp.buf.code_action()
-      end,
-      "LSP code action",
+        function()
+            vim.lsp.buf.code_action()
+        end,
+        "LSP code action",
     },
 
     ["gr"] = {
-      function()
-        vim.lsp.buf.references()
-      end,
-      "LSP references",
+        function()
+            vim.lsp.buf.references()
+        end,
+        "LSP references",
     },
 
     ["<leader>lf"] = {
-      function()
-        vim.diagnostic.open_float { border = "rounded" }
-      end,
-      "Floating diagnostic",
-    },
-
-    ["<leader>k"] = {
-      function()
-        vim.diagnostic.goto_prev { float = { border = "rounded" } }
-      end,
-      "Goto prev",
-    },
-
-    ["<leader>j"] = {
-      function()
-        vim.diagnostic.goto_next { float = { border = "rounded" } }
-      end,
-      "Goto next",
+        function()
+            vim.diagnostic.open_float { border = "rounded" }
+        end,
+        "Floating diagnostic",
     },
 
     ["<leader>q"] = {
-      function()
-        vim.diagnostic.setloclist()
-      end,
-      "Diagnostic setloclist",
+        function()
+            vim.diagnostic.setloclist()
+        end,
+        "Diagnostic setloclist",
     },
 
     ["<leader>wa"] = {
-      function()
-        vim.lsp.buf.add_workspace_folder()
-      end,
-      "Add workspace folder",
+        function()
+            vim.lsp.buf.add_workspace_folder()
+        end,
+        "Add workspace folder",
     },
 
-    ["<leader>wr"] = {
-      function()
-        vim.lsp.buf.remove_workspace_folder()
-      end,
-      "Remove workspace folder",
-    },
+    -- Replaced by autosession
+    -- ["<leader>wr"] = {
+    --     function()
+    --         vim.lsp.buf.remove_workspace_folder()
+    --     end,
+    --     "Remove workspace folder",
+    -- },
 
     ["<leader>wl"] = {
-      function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end,
-      "List workspace folders",
+        function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end,
+        "List workspace folders",
     },
 
     -- find
@@ -252,106 +244,106 @@ local N = {
     ["<leader>ma"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
 
     ["<A-h>"] = {
-      function()
-        require("nvterm.terminal").toggle "float"
-      end,
-      "Toggle floating term",
+        function()
+            require("nvterm.terminal").toggle "float"
+        end,
+        "Toggle floating term",
     },
 
     ["<A-v>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "Toggle horizontal term",
+        function()
+            require("nvterm.terminal").toggle "horizontal"
+        end,
+        "Toggle horizontal term",
     },
 
     -- new
     ["<leader>cc"] = {
-      function()
-        local ok, start = require("indent_blankline.utils").get_current_context(
-          vim.g.indent_blankline_context_patterns,
-          vim.g.indent_blankline_use_treesitter_scope
-        )
+        function()
+            local ok, start = require("indent_blankline.utils").get_current_context(
+                vim.g.indent_blankline_context_patterns,
+                vim.g.indent_blankline_use_treesitter_scope
+            )
 
-        if ok then
-          vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
-          vim.cmd [[normal! _]]
-        end
-      end,
+            if ok then
+                vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
+                vim.cmd [[normal! _]]
+            end
+        end,
 
-      "Jump to current context",
+        "Jump to current context",
     },
 
     -- Navigation through hunks
     ["]c"] = {
-      function()
-        if vim.wo.diff then
-          return "]c"
-        end
-        vim.schedule(function()
-          require("gitsigns").next_hunk()
-        end)
-        return "<Ignore>"
-      end,
-      "Jump to next hunk",
-      opts = { expr = true },
+        function()
+            if vim.wo.diff then
+                return "]c"
+            end
+            vim.schedule(function()
+                require("gitsigns").next_hunk()
+            end)
+            return "<Ignore>"
+        end,
+        "Jump to next hunk",
+        opts = { expr = true },
     },
 
     ["[c"] = {
-      function()
-        if vim.wo.diff then
-          return "[c"
-        end
-        vim.schedule(function()
-          require("gitsigns").prev_hunk()
-        end)
-        return "<Ignore>"
-      end,
-      "Jump to prev hunk",
-      opts = { expr = true },
+        function()
+            if vim.wo.diff then
+                return "[c"
+            end
+            vim.schedule(function()
+                require("gitsigns").prev_hunk()
+            end)
+            return "<Ignore>"
+        end,
+        "Jump to prev hunk",
+        opts = { expr = true },
     },
 
     -- Actions
     ["<leader>rh"] = {
-      function()
-        require("gitsigns").reset_hunk()
-      end,
-      "Reset hunk",
+        function()
+            require("gitsigns").reset_hunk()
+        end,
+        "Reset hunk",
     },
 
     ["<leader>ph"] = {
-      function()
-        require("gitsigns").preview_hunk()
-      end,
-      "Preview hunk",
+        function()
+            require("gitsigns").preview_hunk()
+        end,
+        "Preview hunk",
     },
 
     ["<leader>gb"] = {
-      function()
-        package.loaded.gitsigns.blame_line()
-      end,
-      "Blame line",
+        function()
+            package.loaded.gitsigns.blame_line()
+        end,
+        "Blame line",
     },
 
     ["<leader>td"] = {
-      function()
-        require("gitsigns").toggle_deleted()
-      end,
-      "Toggle deleted",
+        function()
+            require("gitsigns").toggle_deleted()
+        end,
+        "Toggle deleted",
     },
 
     ["<leader>wK"] = {
-      function()
-        vim.cmd "WhichKey"
-      end,
-      "Which-key all keymaps",
+        function()
+            vim.cmd "WhichKey"
+        end,
+        "Which-key all keymaps",
     },
     ["<leader>wk"] = {
-      function()
-        local input = vim.fn.input "WhichKey: "
-        vim.cmd("WhichKey " .. input)
-      end,
-      "Which-key query lookup",
+        function()
+            local input = vim.fn.input "WhichKey: "
+            vim.cmd("WhichKey " .. input)
+        end,
+        "Which-key query lookup",
     },
 }
 
@@ -373,17 +365,17 @@ local V = {
     [">"] = { ">gv", "Indent line" },
 
     ["<leader>ca"] = {
-      function()
-        vim.lsp.buf.code_action()
-      end,
-      "LSP code action",
+        function()
+            vim.lsp.buf.code_action()
+        end,
+        "LSP code action",
     },
 }
 
 
 
 local function createNMap(mode, key, func, d, opts)
-    vim.keymap.set(mode, key, func, {desc = d, opts})
+    vim.keymap.set(mode, key, func, { desc = d, opts })
 end
 
 local function runMapping(mode, mappings)
@@ -401,6 +393,6 @@ runMapping("i", I)
 
 -- local ls = require('luasnip')
 
-vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
-vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
-vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
+-- vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
+-- vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
+-- vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true })

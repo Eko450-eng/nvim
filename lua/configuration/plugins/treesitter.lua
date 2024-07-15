@@ -3,6 +3,7 @@ return {
     config = function()
         require("nvim-treesitter.configs").setup {
             ensure_installed = {
+                "slint",
                 "vim",
                 "lua",
                 "html",
