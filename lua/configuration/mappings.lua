@@ -47,6 +47,14 @@ local I = {
 }
 
 local N = {
+    ["<leader>a"] = {
+        "<cmd> :lua require('harpoon.mark').add_file()<CR>",
+        "Add file to harpoon"
+    },
+    ["<leader>A"] = {
+        "<cmd> :lua require('harpoon.ui').toggle_quick_menu()<CR>",
+        "Open harpoon"
+    },
     ["<leader>dr"] = {
         function()
             require("dapui").toggle()
@@ -80,8 +88,8 @@ local N = {
     ["<leader>h"] = { ":bd<CR>", "Kill tab" },
     ["n"] = { "nzzzv", "find next occurrence" },
     ["N"] = { "Nzzzv", "find previous occurrence" },
-    ["<leader>j"] = { ":lnext<CR>zz", "location next" },
-    ["<leader>k"] = { ":lprev<CR>zz", "location previous" },
+    -- ["<leader>j"] = { ":lnext<CR>zz", "location next" },
+    -- ["<leader>k"] = { ":lprev<CR>zz", "location previous" },
     -- ["<M-j>"] = { ":cn<CR>zz", "quickfix next" },
     -- ["<M-k>"] = { ":cp<CR>zz", "quickfix previous" },
     ["<M-j>"] = { "<cmd> ChatGPT<CR>", "Toggle ChatGPT" },
