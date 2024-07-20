@@ -68,5 +68,6 @@
   "vim-slint": { "branch": "main", "commit": "9badce3860297562bb5e80ba1666628f9e0ac632" },
   "vim-xml-runtime": { "branch": "master", "commit": "3b1ef6fbc07fda8e6407c56d43fa37319355e62f" },
   "vscode-js-debug": { "branch": "main", "commit": "5b0f41dbe845d693a541c1fae30cec04c878216f" },
+  "w3m.vim": { "branch": "master", "commit": "228a852b188f1a62ecea55fa48b0ec892fa6bad7" },
   "which-key.nvim": { "branch": "main", "commit": "4c36b9b8c722bcf51d038dcfba8b967f0ee818b8" }
 }

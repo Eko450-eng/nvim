@@ -63,7 +63,7 @@ local N = {
     },
     ["<leader>db"] = { "<cmd> DapToggleBreakpoint<CR>", "Toggle Breakpoint" },
     ["<leader>e"] = { "<cmd> Oil<CR>", "Open Oil" },
-    ["<leader>/"] = { "<cmd> CBccbox<CR>", "Codeactions" },
+    ["<leader>/"] = { "<cmd> CBccbox<CR>", "Comment Box" },
     ["<leader>t"] = { "<cmd> RustLsp codeAction<CR>", "Rust Codeactions" },
     ["<leader>lt"] = { "<cmd> RustLsp debuggables last<CR>", "Rust debugger" },
     ["<leader>ll"] = { "<cmd> RustLsp runnables last<CR>", "Rust runner" },
@@ -71,8 +71,6 @@ local N = {
     ["<leader>rs"] = { "<cmd> IBLToggleScope<CR>", "Toggle indent blankline" },
     ["<leader>bk"] = { "<cmd> RustLsp codeAction<CR>", "Open Codeactions for Rust" },
     ["<leader>sf"] = { "<cmd> Telescope buffers<CR>", "Kill Buffer" },
-    -- ["<leader>ff"] = {"<cmd> require('telescope.actions').delete_buffer<CR>", "Kill Buffer"},
-    -- ["<leader>h"] = {"<cmd> bd<CR>", "Kill Buffer"},
     ["<S-Tab>"] = { "<cmd> bnext<CR>", "Next Buffer" },
     ["<Tab>"] = { "<cmd> bprev<CR>", "Previous Buffer" },
     ["<leader>gg"] = { "<cmd> LazyGit<CR>", "Open LazyGit" },
@@ -83,15 +81,23 @@ local N = {
     ["<leader>dl"] = { "<cmd> DBUILastQueryInfo<CR>", "Last query ingo" },
     ["<C-p>"] = { "<cmd> Telescope git_files <CR>", "find git files" },
     ["<leader>P"] = { "<cmd> Telescope project <CR>", "Projects view" },
-    ["<leader>B"] = { "<cmd> Telescope live_grep <CR>", "live grep" },
     ["<leader>E"] = { "<cmd> NvimTreeToggle <CR>", "Open NvimTree" },
     ["<leader>h"] = { ":bd<CR>", "Kill tab" },
     ["n"] = { "nzzzv", "find next occurrence" },
     ["N"] = { "Nzzzv", "find previous occurrence" },
-    -- ["<leader>j"] = { ":lnext<CR>zz", "location next" },
-    -- ["<leader>k"] = { ":lprev<CR>zz", "location previous" },
-    -- ["<M-j>"] = { ":cn<CR>zz", "quickfix next" },
-    -- ["<M-k>"] = { ":cp<CR>zz", "quickfix previous" },
+    ["<leader>k"] = {
+        function()
+            vim.diagnostic.goto_prev()
+        end,
+        "Previous Error",
+    },
+
+    ["<leader>j"] = {
+        function()
+            vim.diagnostic.goto_next()
+        end,
+        "Next Error",
+    },
     ["<M-j>"] = { "<cmd> ChatGPT<CR>", "Toggle ChatGPT" },
     ["<M-k>"] = { "<cmd> ChatGPTCompleteCode<CR>", "ChatGPT CompleteCode" },
     ["<leader>d"] = { '"_d', "delete into void" },
@@ -211,32 +217,10 @@ local N = {
         "Diagnostic setloclist",
     },
 
-    ["<leader>wa"] = {
-        function()
-            vim.lsp.buf.add_workspace_folder()
-        end,
-        "Add workspace folder",
-    },
-
-    -- Replaced by autosession
-    -- ["<leader>wr"] = {
-    --     function()
-    --         vim.lsp.buf.remove_workspace_folder()
-    --     end,
-    --     "Remove workspace folder",
-    -- },
-
-    ["<leader>wl"] = {
-        function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end,
-        "List workspace folders",
-    },
-
     -- find
+    --
+    ["<leader>B"] = { "<cmd> Telescope live_grep <CR>", "live grep" },
     ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "Find files" },
-    ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
-    ["<leader>fw"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
     ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
@@ -247,8 +231,6 @@ local N = {
     ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
 
     -- pick a hidden term
-    ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
-
     ["<leader>ma"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
 
     ["<A-h>"] = {
@@ -263,23 +245,6 @@ local N = {
             require("nvterm.terminal").toggle "horizontal"
         end,
         "Toggle horizontal term",
-    },
-
-    -- new
-    ["<leader>cc"] = {
-        function()
-            local ok, start = require("indent_blankline.utils").get_current_context(
-                vim.g.indent_blankline_context_patterns,
-                vim.g.indent_blankline_use_treesitter_scope
-            )
-
-            if ok then
-                vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
-                vim.cmd [[normal! _]]
-            end
-        end,
-
-        "Jump to current context",
     },
 
     -- Navigation through hunks
@@ -367,8 +332,6 @@ local V = {
     ["`"] = { 'c``<C-c>P", "surround with tacks' },
     ["<leader>d"] = { '"_d', "delete into void" },
     ["<leader>p"] = { '"_p', "paste and delete previous into void" },
-    --["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
-    --["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["<"] = { "<gv", "Indent line" },
     [">"] = { ">gv", "Indent line" },
 
@@ -397,10 +360,3 @@ runMapping("v", V)
 runMapping("x", X)
 runMapping("t", T)
 runMapping("i", I)
---runMapping("s", S)
-
--- local ls = require('luasnip')
-
--- vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
--- vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
--- vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true })

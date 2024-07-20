@@ -20,6 +20,10 @@ return {
             filetypes = { 'python' }
         }
 
+        lspconfig.biome.setup {
+            filetypes = {'json', 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+        }
+
         lspconfig.tsserver.setup {
             init_options = {
                 plugins = {
