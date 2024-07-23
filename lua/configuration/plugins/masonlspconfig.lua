@@ -21,7 +21,7 @@ return {
         }
 
         lspconfig.biome.setup {
-            filetypes = {'json', 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+            filetypes = { 'json', 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
         }
 
         lspconfig.tsserver.setup {
@@ -37,15 +37,16 @@ return {
             filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
         }
 
-        -- lspconfig.rust_analyzer.setup({
-        --     filetypes = { "rust" },
-        --     root_dir = require("lspconfig/util").root_pattern("Cargo.toml"),
-        --     settings = {
-        --         cargo = {
-        --             allFeatures = true,
-        --         },
-        --     },
-        -- })
+        lspconfig.rust_analyzer.setup({
+            filetypes = { "rust" },
+            root_dir = require("lspconfig/util").root_pattern("Cargo.toml"),
+            cmd = { "/home/eko/.nix-profile/bin/rust-analyzer" },
+            settings = {
+                cargo = {
+                    allFeatures = true,
+                },
+            },
+        })
 
 
         lspconfig.volar.setup({})
