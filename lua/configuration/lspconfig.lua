@@ -14,7 +14,6 @@ local opts = {
         "lua-language-server",
         "js-debug-adapter",
         "stylua",
-        "rust-analyzer",
         "css-lsp",
         "angular-language-server",
         "html-lsp",

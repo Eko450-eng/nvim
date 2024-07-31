@@ -47,20 +47,25 @@ local I = {
 }
 
 local N = {
-    ["<leader>a"] = {
-        "<cmd> :lua require('harpoon.mark').add_file()<CR>",
-        "Add file to harpoon"
-    },
-    ["<leader>A"] = {
-        "<cmd> :lua require('harpoon.ui').toggle_quick_menu()<CR>",
-        "Open harpoon"
-    },
+    -- ["<leader>a"] = {
+    --     "<cmd> :lua require('harpoon.mark').add_file()<CR>",
+    --     "Add file to harpoon"
+    -- },
+    -- ["<leader>A"] = {
+    --     "<cmd> :lua require('harpoon.ui').toggle_quick_menu()<CR>",
+    --     "Open harpoon"
+    -- },
     ["<leader>dr"] = {
         function()
             require("dapui").toggle()
         end,
         "evaluate selection",
     },
+    ["<leader>y"] = { "<cmd> DapStepOut<CR>", "Step Out" },
+    ["<leader>i"] = { "<cmd> DapStepInto<CR>", "Step Into" },
+    ["<leader>m"] = { "<cmd> DapStepOver<CR>", "Step Over" },
+    ["<leader>,"] = { "<cmd> DapNew<CR>", "DapNew" },
+    ["<leader>l"] = { "<cmd> DapContinue<CR>", "Continue" },
     ["<leader>db"] = { "<cmd> DapToggleBreakpoint<CR>", "Toggle Breakpoint" },
     ["<leader>e"] = { "<cmd> Oil<CR>", "Open Oil" },
     ["<leader>/"] = { "<cmd> CBccbox<CR>", "Comment Box" },
