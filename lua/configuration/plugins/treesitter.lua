@@ -3,6 +3,8 @@ return {
     config = function()
         require("nvim-treesitter.configs").setup {
             ensure_installed = {
+                "gdscript",
+                "godot_resource",
                 "slint",
                 "vim",
                 "lua",
@@ -16,7 +18,8 @@ return {
                 "markdown_inline",
                 "python",
                 "rust",
-            }
+            },
+            auto_install = true,
         }
     end
 }

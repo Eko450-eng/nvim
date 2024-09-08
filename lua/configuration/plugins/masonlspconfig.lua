@@ -11,6 +11,8 @@ return {
         -- local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
         local vue_language_server_path = "/home/eko/node_modules/.pnpm/.pnpm/5/node_modules/@vue/typescript-plugin"
 
+        lspconfig.gdscript.setup {}
+
         lspconfig.svelte.setup {
             filetypes = { 'svelte' },
         }
@@ -44,14 +46,13 @@ return {
         -- lspconfig.rust_analyzer.setup({
         --     filetypes = { "rust" },
         --     root_dir = require("lspconfig/util").root_pattern("Cargo.toml"),
-        --     cmd = { "/run/current-system/sw/bin/rust-analyzer" },
+        --     cmd = { "/home/eko/.nix-profile/bin/rust-analyzer" },
         --     settings = {
         --         cargo = {
         --             allFeatures = true,
         --         },
         --     },
         -- })
-
 
         lspconfig.volar.setup({})
 

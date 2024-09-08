@@ -14,3 +14,4 @@ require('configuration.mappings')
 require('configuration.lspconfig')
 
 vim.cmd([[colorscheme catppuccin]])
+vim.o.clipboard = 'unnamedplus'
