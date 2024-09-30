@@ -8,6 +8,7 @@ local mason = require("mason")
 
 local opts = {
     ensure_installed = {
+        "svelte",
         "slint-lsp",
         "clangd",
         "volar",
